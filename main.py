@@ -3,8 +3,16 @@
 import pymysql
 import pandas as pd
 import matplotlib.pyplot as plt
+from decouple import config # allows .env files
 
-connection = pymysql.connect(host = 'db.redhawks.us', user = 'ic_student', passwd = '1WillN0t$h@reThis!', database = 'naperville')
+# Import variables from the .env file
+env_HOST = config('HOST')
+env_USER = config('USER')
+env_PASSWORD = config('PASSWORD')
+env_DATABASE = config('DATABASE')
+
+# Modified to use ENV variables
+connection = pymysql.connect(host = env_HOST, user = env_USER, passwd = env_PASSWORD, database = env_DATABASE)
 
 with connection:
     with connection.cursor() as cursor:
