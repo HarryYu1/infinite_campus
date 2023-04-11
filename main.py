@@ -1,35 +1,32 @@
-#SQL test
-#from MySQLdb import _mysql
 import pymysql
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 # connects to school sql database
 connection = pymysql.connect(host = 'db.redhawks.us', user = 'ic_student', passwd = '1WillN0t$h@reThis!', database = 'naperville')
 
-with connection:
-    with connection.cursor() as cursor:
-        # fetches data from sql database
-        cursor.execute(
-            'SELECT * FROM `[203_NCHS_Progress_Grades]`'
-        )
-        print('connected!')
+with connection.cursor() as cursor:
+  # fetches data from sql database
+  # sorts each student's classes from lowest grade to highest
+  cursor.execute('''
+                SELECT StudentID, CourseName 
+                FROM `[203_NCHS_Progress_Grades]` 
+                ORDER BY StudentID ASC, CoursePercent ASC
+                ''')
+  print('connected!')
 
-        # imports data into panda
-        df = pd.DataFrame(cursor.fetchall(), columns = ['Index', 'IC_ID', 'CourseName', 'TeacherName', 'LetterGrade', 'Percentage'])
-    
+  # imports data into panda
+  df = pd.DataFrame(cursor.fetchall(), columns = ['IC_ID', 'CourseName'])
 
-#groups data by id 
-min_value = df.groupby('IC_ID').Percentage.min()
-#merge
-df = df.merge(min_value, on='IC_ID',suffixes=('', '_min'))
-#drop everything except IC_ID and CourseName
-df = df[df.Percentage==df.Percentage_min].drop('Percentage_min', axis=1).drop('TeacherName', axis=1).drop('LetterGrade', axis=1).drop('Percentage', axis=1).drop('Index', axis=1)
+df = df.groupby('IC_ID')['CourseName'].apply(list)
+
+# pseudocode for SOAR class assignment (WIP)
+# for (student class)
+
 print(df)
 
-
-#taking a peek at the grade distribution of everyone....
-#plt.hist(df["Percentage"], bins = 100)
+# taking a peek at the grade distribution of everyone....
+#plt.hist(df["CourseName"], bins = 100)
 #plt.show()
 
 '''
