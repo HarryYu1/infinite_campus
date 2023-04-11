@@ -24,7 +24,7 @@ min_value = df.groupby('IC_ID').Percentage.min()
 #merge
 df = df.merge(min_value, on='IC_ID',suffixes=('', '_min'))
 #drop everything except IC_ID and CourseName
-df = df[df.Percentage==df.Percentage_min].drop('Percentage_min', axis=1).drop('TeacherName', axis=1).drop('LetterGrade', axis=1).drop('Percentage', axis=1).drop('Index', axis=1)
+df = df[df.Percentage==df.Percentage_min].drop('Percentage_min', axis=1).drop('TeacherName', axis=1).drop('LetterGrade', axis=1).drop('Index', axis=1)
 print(df)
 
 
