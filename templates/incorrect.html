@@ -1,0 +1,65 @@
+<!doctype html>
+<style>
+  body {
+    background-image: url('https://cdn.wallpapersafari.com/67/96/yYwjPx.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+  }
+  div.loginContainer {
+    font-family: "Oxygen";
+    font-size: 25px;
+    
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    background: #ffcccb;
+    opacity: 0.7;
+    padding: 20px;
+
+    width: 200px;
+    height: 215px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+
+  }
+
+  div.creds{ 
+    font-size: 12px;
+    padding-top: 8%;
+  }
+
+  div.heading{
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ICP Invalid Credentials</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class = loginContainer>
+      <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
+      <div class = heading>Invalid Credentials!</div>
+      <form method="POST"
+            action="{{ url_for('handle_post') }}">
+      <div class = creds>
+        <label for="username">Return to the main page to try again.</label><br>
+      </div>
+      <div>
+    </div>
+  </body>
+</html>
+
