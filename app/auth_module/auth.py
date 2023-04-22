@@ -16,7 +16,7 @@ def load_logged_in_user():
         g.user = 1
 
 @authbp.route('/login')
-def view_form():
+def login():
   return render_template('auth/form.html')
   
 @authbp.route('/handle_post', methods = ["POST"])
@@ -37,12 +37,15 @@ def handle_post():
 def logout():
     session.clear()
     g.users = None
+    print('redirected from logout')
     return redirect(url_for('auth.login'))
+
 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
+            print('redirected from login_required')
             return redirect(url_for('auth.login'))
 
         return view(**kwargs)

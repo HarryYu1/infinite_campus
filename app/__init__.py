@@ -1,6 +1,6 @@
 import os
-from flask import Flask
-
+from flask import Flask, url_for
+from werkzeug.routing import Rule
 
 def create_app(test_config=None):
     # create and configure the app
@@ -22,13 +22,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    print('debug')
 
-    from .auth_module import auth
+    from .auth_module import auth, default_redirect
     app.register_blueprint(auth.authbp)
+    app.register_blueprint(default_redirect.default_redirect_bp)
 
     from .scheduling_module import scheduling
     app.register_blueprint(scheduling.schedulingbp)
