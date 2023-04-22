@@ -93,7 +93,7 @@
       <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
       <div class = heading>IC Project Login</div>
       <form method="POST"
-            action="{{ url_for('handle_post') }}">
+            action="{{ url_for('auth.handle_post') }}">
       <div class = creds>
         <label for="username">Username: </label><br>
         <input type="text" id="username" name="username"><br>
