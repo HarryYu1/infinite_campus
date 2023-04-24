@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, request, redirect, url_for
+"""from flask import Flask, render_template, Response, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -23,8 +23,9 @@ def handle_post():
 
 @app.route('/initiateSOAR', methods=['POST'])
 def initiateSOAR():
-  import main # Imports the main.py file. 
+  import app.scheduling_module.main as main # Imports the main.py file. 
   return render_template('index.html')
 
 app.run(host='0.0.0.0', port=81)
 
+"""
