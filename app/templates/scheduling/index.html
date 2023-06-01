@@ -4,11 +4,11 @@
     background-image: url('https://cdn.wallpapersafari.com/67/96/yYwjPx.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100%;
+    background-size: cover;
   }
   div.mainContainer {
-    font-family: "Oxygen";
-    font-size: 25px;
+	font-family: "Oxygen";
+    font-size: 10px;
     
     margin: auto;
     text-align: center;
@@ -17,8 +17,8 @@
     opacity: 0.7;
     padding: 20px;
 
-    width: 80%;
-    height: 80%;
+    width: 200px;
+    height: 360px;
 
     position: absolute;
     top: 50%;
@@ -37,27 +37,210 @@
     padding-top: 15px;
     padding-bottom: 10px;
   }
-
-  .submit {
+  
+  /* Dates and calendar stuff down here */
+  div.datesandstuff {
+  	font-family: "Oxygen";
+    font-size: 20px;
+  }
+  
+  div.datepadding {
+  	padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+  }
+  
+  div.calendarpadding {
+  	padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+  }
+  
+  *,
+  *:before,
+  *:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  input[type="date"]{
+    background-color: #D62921;
+    opacity: 0.7;
+    padding: 5px;
+    transform: translate(-2.5%, 10%);
+    top: 50%;
+    left: 50%;
+    right: 200%;
+    font-family: "Roboto Mono",monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+  }
+  ::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 7px;
+  }
+  
+  /* Confirm stuff down here */
+  
+  *{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+  }
+  body{
+    font-family: 'Noto Sans TC', sans-serif;
+    height: 100vh;
+  }
+  .click{
     font-family: "Oxygen";
     font-size: 10px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 25px;
     width: 125px;
     height: 30px;
+    
+    color: black;
+    text-align: center;
+    
+    display: inline-block;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
     transition-duration: 0.4s;
   }
-  .submit:hover {
+  
+  .click:hover {
+  	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+    
+  /* Popup box o'er here */
+  
+  .popup_box{
+    width: 400px;
+    height: 480px;
+    background: #f2f2f2;
+    text-align: center;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+    z-index: 9999;
+    border-radius: 25px;
+    display: none;
+    
+    position: absolute; 
+    transform: translate(-30%, -90%);
+  }
+  .popup_box i{
+    font-size: 60px;
+    color: #eb9447;
+    border: 5px solid #eb9447;
+    padding: 20px 40px;
+    border-radius: 50%;
+    margin: -10px 0 20px 0;
+  }
+  .popup_box h1{
+    font-size: 30px;
+    color: #1b2631;
+    margin-bottom: 5px;
+  }
+  .popup_box label{
+    font-size: 23px;
+    color: #404040;
+  }
+  .popup_box .btns{
+    margin: 40px 0 0 0;
+  }
+  .btns .btn1, .btns .btn2{
+    background: #999999;
+    color: white;
+    font-family: "Oxygen";
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #808080;
+    padding: 10px 13px;
+  }
+  .btns .btn1{
+    background: #ff3333;
+    border: 1px solid #ff3333;
+    position: absolute; 
+    transform: translate(-110%, -20%);
+    
+  }
+  .btns .btn2{
+    background: #339933;
+    border: 1px solid #339933;
+    position: absolute; 
+    transform: translate(15%, -20%);
+  }
+  .btns .btn1:hover{
+    transition: .4s;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
+  .btns .btn2:hover{
+    transition: .4s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  
+  /* Loading Stuff here */
+  
+  div.loginContainer {
+    font-family: "Oxygen";
+    font-size: 20px;
+    
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    background: #FFFFFF;
+    opacity: 0.7;
+    padding: 20px;
 
+    width: 220px;
+    height: 375px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+
+  }
+
+  div.loadingheading{
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    
+    left: 27%;
+    position: absolute;
+    top: 63%;
+    transform: translate(-50%, -50%);
+    
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+    
 </style>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IC Main Page</title>
+    <title>IC Submission Page</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,15 +248,118 @@
     
   </head>
   <body>
-    
-    <div class = mainContainer>
-      <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
-      <div class = heading></div> <!--Title goes here!-->
-      <div class = creds>
-      <form action="/initiateSOAR" method="post">
-        <button class="submit" type="submit">Start SOAR Selection</button>
-      </form>
-      <div>
+      <div class = mainContainer>
+        <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
+        <div class = heading></div> <!--Title goes here!-->
+        
+        <div class = datesandstuff>
+          <div class = datepadding>
+            Today's Date:
+            <input type="date" id = "currentdatecal" format="mm/dd/yyyy" placeholder="MM-DD-YYYY">
+          </div>
+
+          <div class = datepadding>
+            SOAR Date:
+            <input type="date" id = "soardatecal" format="mm/dd/yyyy" placeholder="MM-DD-YYYY">
+          </div>
+        </div>
+        <div class = creds>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+          // Controls the visibility of stuff in 'ere
+          $(document).ready(function(){
+            $('div.loginContainer').css("display", "none");
+            
+            $('.click').click(function(){
+              $('.popup_box').css("display", "block");
+            });
+            
+            $('.btn1').click(function(){
+              $('.popup_box').css("display", "none");
+            });
+            
+            $('.btn2').click(function(){
+              $('.popup_box').css("display", "none");
+              $('div.mainContainer').css("display", "none");
+              $('div.loginContainer').css("display", "block");
+            });
+            
+          });
+
+        </script>
+        
+        <button href="#" class="click" OnClick = "runWarning()">Start SOAR Selection</button> <!-- Submit button that leads to the warning popup.-->
+        
+        <div class="popup_box" >
+          <img width = 170px height = 200px src = "https://th.bing.com/th/id/R.f875b63593d13a77c8288f9d03acd7c6?rik=Um7OdrzpdHADtw&riu=http%3a%2f%2fpngimg.com%2fuploads%2fexclamation_mark%2fexclamation_mark_PNG37.png&ehk=6VEuTZP6HLLrqXKH1WJPwuyYQ4D5F89uMajysA%2boHjM%3d&risl=&pid=ImgRaw&r=0" style = "padding-bottom: 30px" >
+          <h2 style = "padding: 15px;">Woah there! Are the dates entered correct?</h2>
+          
+          <form>
+          <h4>Date Format: YYYY-MM-DD</h4>
+          <h4 style = "font-weight: normal;" id="currDate"> </h4>
+          <h4 style = "font-weight: normal;" id="soarDate"></h4>
+          <h4> If an error shows up, try again or contact the CS Club team! </h4>
+          </form>
+        <script type="text/javascript"></script>
+        <script>
+          function runWarning(){
+          	deterValue()
+            setHidden()
+          }
+          function deterValue(){ // Javascript 
+            let cdate = document.getElementById("currentdatecal").value;
+            let sdate = document.getElementById("soardatecal").value;
+
+            if (typeof cdate === 'undefined') { // Returns Errors if undefined
+              cdate = "ERROR! UNDEFINED."
+            }
+
+            if (typeof sdate === 'undefined') {
+              sdate = "ERROR! UNDEFINED."
+            }
+            
+            if (cdate === '') { // Returns Errors if empty
+              cdate = "ERROR! EMPTY."
+            }
+
+            if (sdate === '') {
+              sdate = "ERROR! EMPTY."
+            }
+            
+            document.getElementById("currDate").innerHTML = 'Current Date: ' + cdate;
+            document.getElementById("soarDate").innerHTML = 'SOAR Date: ' + sdate;
+          }
+        </script>
+        
+        
+        <div class="btns">
+          <form method = "POST" action="{{ url_for('scheduling.initiateSOAR') }}">
+          <button href="#" class="btn1">No</button>
+          <input type="hidden" id = "currentdatepost" name = "currentdatepost">
+          <input type="hidden" id = "soardatepost" name = "soardatepost">
+          <button href = "#" class = "btn2" id = "btn2">Yes</button></form> <!-- THIS RIGHT HERE is the final button to submit dates and stuff-->
+          
+        </div>
+        <script> // Sets hidden to dates so that Flask can read it
+          function setHidden(){
+          	let cdate = document.getElementById("currentdatecal").value;
+            let sdate = document.getElementById("soardatecal").value;
+            
+            document.getElementById("currentdatepost").value = cdate;
+            document.getElementById("soardatepost").value = sdate;
+          }
+        </script>
+      </div>
+      </div>
     </div>
+    
+    
+    <!-- Loading Screen Stuff Over 'ere -->
+      <div class = loginContainer>
+        <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
+        <div class = loadingheading>Sit back and relax while we take care of everything for you!</div>
+        <div class="loader"></div>
+      </div>
+    <!--Loading Screen Stuff Ends -->   
   </body>
 </html>
