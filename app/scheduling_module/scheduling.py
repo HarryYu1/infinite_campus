@@ -10,8 +10,8 @@ schedulingbp = Blueprint('scheduling', __name__)
 @schedulingbp.route('/initiateSOAR', methods = ["POST"])
 def initiateSOAR():
   if request.method == 'POST':
-    currentDate = request.form.get('currentdatepost')
-    soarDate = request.form.get('soardatepost')
+    currentDate = request.form.get('currentdatepost') # Date for Current Date
+    soarDate = request.form.get('soardatepost') # Date for SOAR Date
 
     print("\n\n\n\n\nCurrent Date:", currentDate, "\t\t\tSOAR Date:", soarDate, "\n\n\n\n")
 
