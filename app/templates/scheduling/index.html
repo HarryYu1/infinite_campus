@@ -217,7 +217,7 @@
 
   .loader {
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border-top: 16px solid #D62921; /* That weird redish color??? */
     border-radius: 50%;
     
     left: 27%;
@@ -291,7 +291,7 @@
         <button href="#" class="click" OnClick = "runWarning()">Start SOAR Selection</button> <!-- Submit button that leads to the warning popup.-->
         
         <div class="popup_box" >
-          <img width = 170px height = 200px src = "https://th.bing.com/th/id/R.f875b63593d13a77c8288f9d03acd7c6?rik=Um7OdrzpdHADtw&riu=http%3a%2f%2fpngimg.com%2fuploads%2fexclamation_mark%2fexclamation_mark_PNG37.png&ehk=6VEuTZP6HLLrqXKH1WJPwuyYQ4D5F89uMajysA%2boHjM%3d&risl=&pid=ImgRaw&r=0" style = "padding-bottom: 30px" >
+          <img width = 170px height = 200px src = "https://i.pinimg.com/originals/b9/67/8f/b9678ffc28877a984d025750d5acdf8b.gif" style = "padding-bottom: 30px" >
           <h2 style = "padding: 15px;">Woah there! Are the dates entered correct?</h2>
           
           <form>
@@ -333,10 +333,11 @@
         
         
         <div class="btns">
-          <form method = "POST" action="{{ url_for('scheduling.initiateSOAR') }}">
           <button href="#" class="btn1">No</button>
-          <input type="hidden" id = "currentdatepost" name = "currentdatepost">
-          <input type="hidden" id = "soardatepost" name = "soardatepost">
+
+          <form method = "POST" action="{{ url_for('scheduling.initiateSOAR') }}">
+            <input type="hidden" id = "currentdatepost" name = "currentdatepost">
+            <input type="hidden" id = "soardatepost" name = "soardatepost">
           <button href = "#" class = "btn2" id = "btn2">Yes</button></form> <!-- THIS RIGHT HERE is the final button to submit dates and stuff-->
           
         </div>

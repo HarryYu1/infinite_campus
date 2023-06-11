@@ -15,7 +15,7 @@ def load_logged_in_user():
     else:
         g.user = 1
 
-@authbp.route('/login')
+@authbp.route('/login', methods = ["POST", "GET"])
 def login():
   return render_template('auth/form.html')
   
@@ -24,7 +24,7 @@ def handle_post():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        print(username, password)
+        print("Returned Username: " + username, "\t\t\tReturned Password: " + password)
         if username == "123" and password == "123": # HARDCODED PASSWORD! WARNING!!!!!!!!! >:(
             return render_template('scheduling/index.html')
           
