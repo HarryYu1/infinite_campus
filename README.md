@@ -10,7 +10,6 @@ The Infinite Campus project will be programmed and maintained by the NCHS CS Clu
 <br> pip (Debian Linux): ```sudo apt install python3-pip```; Root Required.</br>
 <br>Flask: ```pip install flask``` </br>
 <br>Webview: ```pip install pywebview``` </br>
-<br>Pymysql: ```pip install pymysql``` </br>
 <br>Pandas: ```pip install pandas``` </br>
 <br>Matplotlib: ```pip install matplotlib``` </br>
 <br>Sql Alchemy: ```pip install sqlalchemy``` </br>
@@ -26,6 +25,3 @@ The Infinite Campus project will be programmed and maintained by the NCHS CS Clu
 <br> **Error: ```Cannot import name 'QtWebWidgets' from 'PyQt5'```** </br>
 <br> ---> Run the command (Debian Linux, Newer): ```sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pyqt5.qtwebchannel libqt5webkit5-dev```; Root required.</br>
 <br> ---> Run the command if the previous one doesn't work (Debian Linux): ```sudo apt install python3-pyqt5 python3-pyqt5.qtwebkit python-pyqt5 python-pyqt5.qtwebkit libqt5webkit5-dev```; Root required. </br>
-
-<br> **Error: No module named 'mysql'** </br>
-<br> ---> Run the command (All Operating Systems): ```pip install mysql-connector``` </br>
