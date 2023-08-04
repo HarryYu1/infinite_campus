@@ -1,10 +1,11 @@
-import pymysql
+#import pymysql
 import pandas as pd
 import datetime
 from decimal import *
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import sqlalchemy
 from sqlalchemy import URL
+from sqlalchemy.dialects.mssql import pymssql
 
 
 #========================================
@@ -22,40 +23,53 @@ def makeStudyHall(course):
 #   find the lowest grades for people and create a dataframe
 #==============================================================
 #@param  :  date is a datetime for the soardate to check for assigned
-#TODO: check if already assigned using assigned students table
 def create_priority_table(date):
 
-  # connects to school sql database
-  connection = pymysql.connect(host = 'db.redhawks.us', user = 'ic_student', passwd = '1WillN0t$h@reThis!', database = 'naperville')
+  url_object = URL.create(
+      "mssql+pymssql",
+      username="student",
+      password="1WillN0t$h@reThis!",  # plain (unescaped) text
+      host="naperville203.infinitecampus.org",
+      database="naperville",
+      port = 7771
+  )
 
-  with connection.cursor() as cursor:
+  # connects to school sql database
+  #connection = pymysql.connect(host = 'db.redhawks.us', user = 'ic_student', passwd = '1WillN0t$h@reThis!', database = 'naperville')
+  engine = sqlalchemy.create_engine(url_object)
+
+  with engine.connect() as cursor:
     # fetches data from sql database
     # sorts each student's classes from lowest grade to highest
-    cursor.execute('''
-                SELECT StudentID, CourseName, CoursePercent 
-                FROM `[203_NCHS_Progress_Grades]`
+    result = cursor.execute(sqlalchemy.text('''
+                SELECT StudentID, CourseNumber, CourseName, CoursePercent 
+                FROM [dbo].[203_NCHS_Progress_Grades]
                 WHERE CoursePercent IS NOT NULL
                 ORDER BY StudentID ASC, CoursePercent ASC
-                ''')
+                '''))
     print('connected, fetched from grades')
 
     # imports data into panda
-    grade_data = pd.DataFrame(cursor.fetchall(), columns = ['StudentID', 'CourseName', 'CoursePercent'])
+    grade_data = pd.DataFrame(result.fetchall(), columns = ['StudentID', 'CourseNumber', 'CourseName', 'CoursePercent'])
     
     #grab the list of students that have been assigned
-    cursor.execute('''
+    result = cursor.execute(sqlalchemy.text('''
                 SELECT personGUID, startDate
-                FROM `[203_NCHS_Assigned_Students]`
-                ''')
+                FROM [dbo].[203_NCHS_Assigned_Students]
+                '''))
     print('fetched from assigned students')
 
-    assigned_students = pd.DataFrame(cursor.fetchall(), columns = [ 'personGUID', 'startDate'])
+    assigned_students = pd.DataFrame(result.fetchall(), columns = [ 'personGUID', 'startDate'])
 
+    cursor.commit()
+    cursor.close()
+
+    engine.dispose()
   #drop the rows where the date is not the same as ours
   assigned_students = assigned_students[assigned_students.startDate == date]
   print(assigned_students)
 
-  #drop rows in the grade_data based on if a student exists in the compresed
+  #drop rows in the grade_data based on if a student exists in the assigned students
   IDlist = assigned_students['personGUID'].tolist()
   grade_data = grade_data[grade_data.StudentID.isin(IDlist) == False]
   grade_data.reset_index()
@@ -67,8 +81,9 @@ def create_priority_table(date):
   for i in grade_data.index:
     if grade_data['CoursePercent'][i] >= 90: 
       grade_data['CourseName'][i] = 'Study Hall'
+      grade_data['CourseNumber'][i] = '00000'
 
-  grade_data = grade_data.groupby('StudentID')['CourseName'].apply(list).apply(lambda x : x[:3]).reset_index(name='CourseName').explode('CourseName').reset_index()
+  grade_data = grade_data.groupby(['StudentID', 'CourseNumber'])['CourseName'].apply(list).apply(lambda x : x[:3]).reset_index(name='CourseName').explode('CourseName').reset_index()
 
   grade_data['Priority'] = grade_data.groupby('index').cumcount() + 1
 
@@ -102,17 +117,18 @@ def write_to_database(currdate, soardate):
   print(df)
 
   url_object = URL.create(
-      "mysql+mysqlconnector",
-      username="ic_student",
+      "mssql+pymssql",
+      username="student",
       password="1WillN0t$h@reThis!",  # plain (unescaped) text
-      host="db.redhawks.us",
+      host="naperville203.infinitecampus.org",
       database="naperville",
+      port = 7771
   )
 
   engine = sqlalchemy.create_engine(url_object)
 
   #writes the data to the table
-  df.to_sql(name = "[203_NCHS_Schedule_Priority]", con = engine, if_exists='replace')
+  df.to_sql(name = "[dbo].[203_NCHS_Schedule_Priority]", con = engine, if_exists='replace')
 
 
 
