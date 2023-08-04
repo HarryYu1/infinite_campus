@@ -1,0 +1,87 @@
+<!doctype html>
+<style>
+  body {
+    background-image: url('https://cdn.wallpapersafari.com/67/96/yYwjPx.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  div.loginContainer {
+    font-family: "Oxygen";
+    font-size: 25px;
+    
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    background: #FFFFFF;
+    opacity: 0.7;
+    padding: 20px;
+
+    width: 200px;
+    height: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+
+  }
+
+  div.creds{ 
+    font-size: 12px;
+    padding-top: 8%;
+  }
+
+  div.heading{
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+  .submit {
+  font-family: "Oxygen";
+  font-size: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 100px;
+  height: 25px;
+  transition-duration: 0.4s;
+  }
+  .submit:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Your changes have been saved!</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class = loginContainer>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+    <lord-icon
+        src="https://cdn.lordicon.com/lfqzieho.json"
+        trigger="loop"
+        delay="1000"
+        colors="primary:#c71f16"
+        style="width:100px;height:100px">
+    </lord-icon>
+      <div class = heading>An Error Occured!</div>
+      <div class = creds>
+        <label for="username">Press the button to go back to the login page to try again.</label>
+        <label for="username">If this happens on the second time please contact the CS Club Team.</label>
+        <form method = "POST" action="{{ url_for('auth.login') }}" style = "padding: 30px;">
+          <button class = "submit" type="submit" id="submit">Return to Login</button> 
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
