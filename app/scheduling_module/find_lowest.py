@@ -128,7 +128,18 @@ def write_to_database(currdate, soardate):
   engine = sqlalchemy.create_engine(url_object)
 
   #writes the data to the table
-  df.to_sql(name = "[dbo].[203_NCHS_Schedule_Priority]", con = engine, if_exists='replace')
+  connection = engine.connect()
+  transaction = connection.begin()
+  #try:
+  df.to_sql(name = "[dbo].[203_NCHS_Schedule_Priority]", con = connection, if_exists='replace')
+  transaction.commit()
+  #return True
+  #except Exception as e: 
+  #  transaction.rollback()
+  #  print('Error Occured', error)
+  #  return False
+
+  #commented out try accept for error detection
 
 
 
