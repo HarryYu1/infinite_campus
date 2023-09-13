@@ -81,13 +81,14 @@ def create_priority_table(date):
   for i in grade_data.index:
     if grade_data['CoursePercent'][i] >= 90: 
       grade_data['CourseName'][i] = 'Study Hall'
-      grade_data['CourseNumber'][i] = '00000'
+      grade_data['CourseNumber'][i] = '000000'
+  
+  grade_data = grade_data.groupby('StudentID').head(3).reset_index().rename(columns={'CoursePercent': 'Priority'})
 
-  grade_data = grade_data.groupby(['StudentID', 'CourseNumber'])['CourseName'].apply(list).apply(lambda x : x[:3]).reset_index(name='CourseName').explode('CourseName').reset_index()
-
-  grade_data['Priority'] = grade_data.groupby('index').cumcount() + 1
-
-  grade_data.drop(['index'], axis = 1, inplace = True)
+  grade_data.drop('index', axis = 1, inplace = True)
+  
+  for i in grade_data.index:
+    grade_data['Priority'][i] = (i % 3) + 1
 
   return grade_data
 
