@@ -87,8 +87,7 @@ def create_priority_table(date):
 
   grade_data.drop('index', axis = 1, inplace = True)
   
-  for i in grade_data.index:
-    grade_data['Priority'][i] = (i % 3) + 1
+  grade_data['Priority'] = grade_data.groupby('StudentID').cumcount() + 1
 
   return grade_data
 
