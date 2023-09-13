@@ -77,7 +77,7 @@ def create_priority_table(date):
   print(grade_data)
 
 
-  # takes the Coursename column and groups them by the student ID, then turns it into a list, then takes the 3 lowest grades from that list
+  # removes renames classes with a high enough grade as study hall then removes all but the 3 lowest classess and assesses priority
   for i in grade_data.index:
     if grade_data['CoursePercent'][i] >= 90: 
       grade_data['CourseName'][i] = 'Study Hall'
