@@ -25,7 +25,7 @@ def handle_post():
         username = request.form['username']
         password = request.form['password']
         print("Returned Username: " + username, "\t\t\tReturned Password: " + password)
-        if username == "123" and password == "123": # HARDCODED PASSWORD! WARNING!!!!!!!!! >:(
+        if username == "administrator" and password == "N@perv1ll3Centr4l": # HARDCODED PASSWORD! WARNING!!!!!!!!! >:(
             return render_template('scheduling/index.html')
           
         else:

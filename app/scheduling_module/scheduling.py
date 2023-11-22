@@ -1,4 +1,3 @@
-import functools
 from datetime import datetime
 from . import find_lowest
 
@@ -11,8 +10,11 @@ schedulingbp = Blueprint('scheduling', __name__)
 @schedulingbp.route('/initiateSOAR', methods = ["POST"])
 def initiateSOAR():
   if request.method == 'POST':
-    currentDate = request.form.get('currentdatepost') # Date for Current Date
-    soarDate = request.form.get('soardatepost') # Date for SOAR Date
+    try:
+      currentDate = request.form.get('currentdatepost') # Date for Current Date
+      soarDate = request.form.get('soardatepost') # Date for SOAR Date 
+    except:
+      return redirect(url_for('auth.login'))
 
     #print("\n\n\n\n\nCurrent Date:", currentDate, "\t\t\tSOAR Date:", soarDate, "\n\n\n\n")
 
@@ -28,4 +30,8 @@ def initiateSOAR():
     
   else:
     return redirect(url_for('auth.login'))
-  
+
+#error handler
+@schedulingbp.errorhandler(500)
+def function_name(error):
+    return render_template('scheduling/error.html')
