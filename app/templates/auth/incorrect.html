@@ -69,14 +69,23 @@
     <div class = loginContainer>
       <img width = 70px height = 70px src = "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/2504/2020/07/02031506/Naperville_Central_Logo.png"> 
       <div class = heading>Invalid Credentials!</div>
-      <form method="POST"
-            action="{{ url_for('auth.handle_post') }}">
+     
       <div class = creds>
         <label for="username">Return to the main page to try again.</label>
       </div>
-      <form method = "POST" action="{{ url_for('auth.login') }}" style = "padding: 30px; background: #ffcccb;">
+      <form method = "POST" action="{{ url_for('auth.login') }}" style = " background: #ffcccb;">
         <button class = "submit" type="submit" id="submit">Return to Login</button> 
       </form>
+
+      
+
+      
+      <form method="POST"
+            action="{{ url_for('auth.handle_post') }}">
+    
+    
+    
+      
       <div>
     </div>
   </body>
